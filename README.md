@@ -33,7 +33,7 @@ poetry install
 poetry run jupyter notebook
 ```
 
-> ![NOTE]
+> [!NOTE]
 > Note that you can also run the notebook in VSCode by selecting the poetry generated kernel environment.
 
 ## Authors
