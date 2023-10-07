@@ -34,7 +34,11 @@ poetry run jupyter notebook
 ```
 
 > [!NOTE]
-> Note that you can also run the notebook in VSCode by selecting the poetry generated kernel environment.
+> If you don't have poetry installed, you can install the dependencies with pip:
+> 
+> ```bash
+> pip install -r requirements.txt
+> ```
 
 ## Authors
 

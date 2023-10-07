@@ -26,8 +26,8 @@ class BFSTree:
         goal_state : tuple
             The goal state to reach
         """
-        queue = deque([self.root]) # Use a deque to implement a FIFO queue
-        self.visited.add(self.root.state) # Keep track of visited states (kinda hash table)
+        queue = deque([self.root]) # Use a deque to keep time complexity low (O(1))
+        self.visited.add(str(self.root.state)) # Keep track of visited states (kinda hash table)
         path_to_goal = None
 
         while queue:
@@ -38,21 +38,19 @@ class BFSTree:
                 break
 
             for child in current_node.spawn_valid_children(): # Spawn all valid children of the current node
-                if child.state not in self.visited:
+                if str(child.state) not in self.visited:
                     queue.append(child)
-                    self.visited.add(child.state) # Add the child to the visited states
+                    self.visited.add(str(child.state)) # Add the child to the visited states
                     current_node.extend(child) # Add the child to the current node's children
                     
                     self.G.add_edge(str(current_node), str(child))
         
         return path_to_goal
 
-    def visualize(self, path_to_goal):
-        pos = nx.spring_layout(self.G, k=0.15, iterations=20) # positions for all nodes
-        nx.draw(self.G, pos, with_labels=True, font_weight='bold', node_color='skyblue', node_size=700, font_size=6)
+    def visualize(self, path_to_goal=None):
+        pos = nx.spring_layout(self.G, k=0.5, iterations=30) # positions for all nodes
+        nx.draw(self.G, pos, with_labels=True, font_weight='bold', node_color='skyblue', node_size=800, font_size=8)
 
         if path_to_goal:
             edges_in_path = [(str(path_to_goal[i]), str(path_to_goal[i + 1])) for i in range(len(path_to_goal) - 1)]
             nx.draw_networkx_edges(self.G, pos, edgelist=edges_in_path, edge_color='r', width=2, alpha=0.6)
-
-        plt.show()
