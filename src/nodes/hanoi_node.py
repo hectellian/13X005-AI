@@ -44,7 +44,7 @@ class HanoiNode(Node):
         """
         return HanoiNode(gamma(self.state), self.n, self.transition, self)
 
-    def spawn_valid_children(self) -> list:
+    def children(self) -> list:
         """Spawn all valid children of the current node
 
         Returns
@@ -53,7 +53,7 @@ class HanoiNode(Node):
             List of all valid children of the current node
         """
         children = []
-        values = [(i, j) for i in range(self.n) for j in range(self.n) if i != j]
+        values = [(i, j) for i in range(self.n) for j in range(self.n) if i != j] # All moves (i, j) where i != j
         for i, j in values:
             gamma = self.transition(i, j)
             child = self.next(gamma)

@@ -37,7 +37,7 @@ class BFSTree:
                 path_to_goal = current_node.get_ancestry()
                 break
 
-            for child in current_node.spawn_valid_children(): # Spawn all valid children of the current node
+            for child in current_node.children(): # Get all valid children of the current node
                 if str(child.state) not in self.visited:
                     queue.append(child)
                     self.visited.add(str(child.state)) # Add the child to the visited states
