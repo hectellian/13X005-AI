@@ -43,7 +43,7 @@ class HanoiNode(Node):
         """
         return HanoiNode(gamma(self.state), self.n, self.transition, self)
 
-    def children(self) -> list:
+    def get_children(self) -> list:
         """Spawn all valid children of the current node
 
         Returns

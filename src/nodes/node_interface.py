@@ -64,7 +64,7 @@ class Node:
         """
         return NotImplementedError
     
-    def children(self) -> list:
+    def get_children(self) -> list:
         """Spawn all valid children of the current node
 
         Returns

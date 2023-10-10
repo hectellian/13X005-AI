@@ -40,7 +40,7 @@ class HospitalNode(Node):
         """
         return HospitalNode(gamma(self.state), self.transition, self)
 
-    def children(self) -> list:
+    def get_children(self) -> list:
         """Spawn all valid children of the current node
 
         Returns
