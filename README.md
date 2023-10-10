@@ -32,10 +32,6 @@ poetry install
 
 3. Run the notebook
 
-```bash
-poetry run jupyter notebook
-```
-
 > [!NOTE]
 > If you don't have poetry installed, you can install the dependencies with pip:
 > 

@@ -7,7 +7,6 @@ Date: 1-9-2023
 This is a module for the AI course project of the University of Geneva.
 """
 from src.nodes.node_interface import Node
-from typing import Tuple
 
 class HanoiNode(Node):
     def __init__(self, state, n: int, transition: callable, parent=None):
