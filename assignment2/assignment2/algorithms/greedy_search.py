@@ -4,26 +4,20 @@ from typing import List, Tuple, Any, Callable
 import heapq # Priority queue
 
 class GreedyBestFirstSearch:
-    def __init__(self, goal_test: Callable[[Any], bool], successors: Callable[[Any], List[Tuple[Any, float]]], heuristic: Callable[[Any], float]):
-        self.goal_test = goal_test
+    def __init__(self, successors: Callable[[Any], List[Tuple[Any, float]]], heuristic: Callable[[Any], float]):
         self.successors = successors
         self.heuristic = heuristic
         self.search_steps = []  # List to store each search step
     
-    def execute(self, start: Node, goal_state: Any) -> List[Node]:
+    def execute(self, start: Node, goal_state: Any, logging: bool = False) -> List[Node]:
         # Priority queue for nodes to explore, prioritized by heuristic value
         frontier = [(self.heuristic(start.state), start)]
         explored = set()  # Set to keep track of explored nodes
 
         while frontier:
-            # Get the node with the lowest heuristic value
-            _, current = heapq.heappop(frontier)
-            
-            # Store the current state of search
-            self.search_steps.append(current)
+            _, current = heapq.heappop(frontier) # Get the node with the lowest heuristic value from the frontier queue
 
-            # Check if current state is the goal state
-            if self.goal_test(current.state):
+            if current.state == goal_state: #is goeal state
                 return self._reconstruct_path(current)
 
             explored.add(current.state)

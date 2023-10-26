@@ -9,7 +9,7 @@ class Node:
     :param cost: The cost to reach this node from the start.
     :param h: The heuristic value for this node.
     """
-    def __init__(self, state: Any, parent: Optional['Node'] = None, cost: float = 0, h: float = 0):
+    def __init__(self, state: Any, parent: Optional['Node'] = None, h: float = 0):
         """
         Initialize a node.
 
@@ -20,7 +20,6 @@ class Node:
         """
         self.state = state
         self.parent = parent
-        self.cost = cost  # Cost to reach this node from the start
         self.h = h  # Heuristic value
 
     def f(self) -> float:
