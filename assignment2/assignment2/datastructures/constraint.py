@@ -25,7 +25,7 @@ class Constraint:
 class HouseConstraint(Constraint):
     def is_satisfied(self) -> bool:
         # Fetch variables involved in this constraint
-        var_dict = {var.name: var for var in self.variables}
+        var_dict = {var.name: var for var in self.variables} 
         C = var_dict.get('C', None)
         F = var_dict.get('F', None)
         P = var_dict.get('P', None)
@@ -40,7 +40,7 @@ class HouseConstraint(Constraint):
         
         # F cannot be in C or adjacent to C
         adjacent_to_C = {1: [2], 2: [1, 3], 3: [2, 4], 4: [3]}
-        if f_val == c_val or f_val in adjacent_to_C.get(c_val, []):
+        if f_val == c_val or f_val in adjacent_to_C.get(c_val, []): 
             return False
         
         # C and P cannot be on the same side

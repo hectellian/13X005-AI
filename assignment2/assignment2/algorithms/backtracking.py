@@ -23,12 +23,12 @@ class BacktrackingSolver:
         :param var: Recently assigned variable.
         :return: True if forward checking succeeds, False otherwise.
         """
-        for constraint in self.csp.constraints:
+        for constraint in self.csp.constraints: # for all constraints
             if var in constraint.variables:
                 for neighbor in constraint.variables:
                     if not neighbor.is_assigned():
-                        new_domain = [value for value in neighbor.domain if constraint.is_satisfied()]
-                        if len(new_domain) == 0:
+                        new_domain = [value for value in neighbor.domain if constraint.is_satisfied()] # remove values that violate the constraint
+                        if len(new_domain) == 0: # if the domain is empty, forward checking fails
                             return False
                         neighbor.domain = new_domain
         return True
@@ -40,13 +40,13 @@ class BacktrackingSolver:
         :param collect_all: If True, collects all solutions. If False, stops after finding the first solution.
         :return: List of dictionaries containing variable assignments for all solutions.
         """
-        if self.csp.is_complete():
-            solution = {var.name: var.assigned_value for var in self.csp.variables}
+        if self.csp.is_complete(): # if the assignment is complete, add it to the list of solutions
+            solution = {var.name: var.assigned_value for var in self.csp.variables} # convert the list of variables to a dictionary
             self.solutions.append(solution)
             return self.solutions if collect_all else [solution]
         
         # Select an unassigned variable
-        var = next(filter(lambda x: not x.is_assigned(), self.csp.variables), None)
+        var = next(filter(lambda x: not x.is_assigned(), self.csp.variables), None) # get the first unassigned variable
         if var is None:
             return []
         
@@ -55,7 +55,7 @@ class BacktrackingSolver:
             var.assigned_value = value
             if self.csp.is_consistent():
                 if self.forward_checking(var):
-                    result = self.solve(collect_all)
+                    result = self.solve(collect_all) # recursively solve the problem
                     if result and not collect_all:
                         return result
             var.assigned_value = None
