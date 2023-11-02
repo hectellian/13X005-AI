@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "assignment3"
+version = "0.1.0"
+description = ""
+authors = ["Anthony Christoforou <anthony.christoforou@etu.unige.ch>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.13"
+matplotlib = "^3.8.0"
+networkx = "^3.2"
+numpy = "^1.26.1"
+
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.26.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
