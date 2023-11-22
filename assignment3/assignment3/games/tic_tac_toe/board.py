@@ -11,8 +11,25 @@ class TicTacToeBoard(IBoard):
         Initialize a 3x3 Tic-Tac-Toe board filled with empty spaces.
         """
         self.board = [[' ' for _ in range(3)] for _ in range(3)]
+        
+    def is_move_legal(self, x, y):
+        """Check if a move is legal.
+        
+        Parameters
+        ----------
+        x : int
+            The row index for the move.
+        y : int
+            The column index for the move.
+            
+        Returns
+        -------
+        bool
+            True if the move is legal, False otherwise.
+        """
+        return 0 <= x < 3 and 0 <= y < 3 and self.board[x][y] == ' '
 
-    def place_move(self, x, y, symbol):
+    def place_move(self, x: int, y: int, symbol: str) -> bool:
         """
         Place a move on the board at position (x, y) with the given symbol.
         
@@ -24,28 +41,39 @@ class TicTacToeBoard(IBoard):
         Returns:
             bool: True if the move was placed successfully, False otherwise.
         """
-        if self.board[x][y] == ' ':
+        if self.is_move_legal(x, y):
             self.board[x][y] = symbol
             return True
         else:
             return False
+        
+    def undo_move(self, x, y):
+        """Undo a move at position (x, y).
 
-    def is_full(self):
+        Parameters
+        ----------
+        x : int
+            The row index for the move.
+        y : int
+            The column index for the move.
+        """
+        self.board[x][y] = ' '
+
+    def is_full(self) -> bool:
         """
         Check if the board is full.
 
         Returns:
             bool: True if the board is full, False otherwise.
         """
-        for row in self.board:
-            for cell in row:
-                if cell == ' ':
-                    return False
-        return True
+        return all(cell != ' ' for row in self.board for cell in row)
 
     def display(self):
         """
         Display the current state of the board.
         """
-        for row in self.board:
-            print(" | ".join(row))
+        print("   0   1   2")  # Column labels
+        for i, row in enumerate(self.board):
+            print(" +---+---+---+")
+            print(f"{i}| {' | '.join(row)} |")  # Row number and board row
+        print(" +---+---+---+")
