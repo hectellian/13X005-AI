@@ -12,8 +12,8 @@ class OthelloBoard(IBoard):
         Initialize an 8x8 Othello board filled with empty spaces.
         """
         self.board = [[' ' for _ in range(8)] for _ in range(8)] # 8x8 board
-        self.board[3][3], self.board[4][4] = '●', '●'
-        self.board[3][4], self.board[4][3] = '○', '○'
+        self.board[3][3], self.board[4][4] = '○', '○'
+        self.board[3][4], self.board[4][3] = '●', '●'
         self.move_history = []
         
     def _captures(self, x: int, y: int, dx: int, dy: int, symbol: str, opponent: str) -> bool:

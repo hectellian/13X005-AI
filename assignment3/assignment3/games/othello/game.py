@@ -12,7 +12,7 @@ class OthelloGame(IGame):
         Initialize the Othello game with an empty board.
         """
         self.board = OthelloBoard()
-        self.current_player = '○' # Black player starts first
+        self.current_player = '●' # Black player starts first
         
     def switch_player(self):
         """
@@ -34,7 +34,7 @@ class OthelloGame(IGame):
         Reset the game to its initial state by creating a new empty board and setting the current player to 'X'.
         """
         self.board = OthelloBoard()
-        self.current_player = '○'
+        self.current_player = '●'
     
     def step(self, x: int, y: int) -> tuple[bool, str | None]:
         """
@@ -83,8 +83,8 @@ class OthelloGame(IGame):
         if not self._check_game_over():
             return None
 
-        black_count = sum(row.count('○') for row in self.board.board)
-        white_count = sum(row.count('●') for row in self.board.board)
+        black_count = sum(row.count('●') for row in self.board.board)
+        white_count = sum(row.count('○') for row in self.board.board)
 
         if black_count > white_count:
             return 1
@@ -106,10 +106,10 @@ class OthelloGame(IGame):
         Returns:
             int: The evaluation score for the current player.
         """
-        black_count = sum(row.count('○') for row in self.board.board)
-        white_count = sum(row.count('●') for row in self.board.board)
+        black_count = sum(row.count('●') for row in self.board.board)
+        white_count = sum(row.count('○') for row in self.board.board)
 
-        if self.current_player == '○':
+        if self.current_player == '●':
             return black_count - white_count
         else:
             return white_count - black_count
