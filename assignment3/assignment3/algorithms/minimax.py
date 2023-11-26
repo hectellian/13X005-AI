@@ -43,12 +43,6 @@ class Minimax:
     def _maximize(self, depth: int, alpha: float, beta: float) -> tuple[float, tuple[int, int] | None]:
         """
         Maximize the utility for the maximizing player.
-
-        Parameters:
-            depth, alpha, beta: See search method.
-
-        Returns:
-            tuple: Best score and corresponding move for the maximizing player.
         """
         max_eval = float('-inf')
         best_move = None
@@ -67,12 +61,6 @@ class Minimax:
     def _minimize(self, depth: int, alpha: float, beta: float) -> tuple[float, tuple[int, int] | None]:
         """
         Minimize the utility for the minimizing player.
-
-        Parameters:
-            depth, alpha, beta: See search method.
-
-        Returns:
-            tuple: Best score and corresponding move for the minimizing player.
         """
         min_eval = float('inf')
         best_move = None

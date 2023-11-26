@@ -9,16 +9,16 @@ class TicTacToeGame(IGame):
 
     def __init__(self):
         """
-        Initialize the Tic-Tac-Toe game with an empty board and set the current player to 'X'.
+        Initialize the Tic-Tac-Toe game with an empty board and set the current player to 'x'.
         """
         self.board = TicTacToeBoard()
-        self.current_player = 'X'
+        self.current_player = 'x'
         
     def switch_player(self):
         """
         Switch the current player.
         """
-        self.current_player = 'O' if self.current_player == 'X' else 'X'
+        self.current_player = 'o' if self.current_player == 'x' else 'x'
         
     def get_legal_moves(self) -> list[tuple[int, int]]:
         """
@@ -31,10 +31,10 @@ class TicTacToeGame(IGame):
 
     def reset(self):
         """
-        Reset the game to its initial state by creating a new empty board and setting the current player to 'X'.
+        Reset the game to its initial state by creating a new empty board and setting the current player to 'x'.
         """
         self.board = TicTacToeBoard()
-        self.current_player = 'X'
+        self.current_player = 'x'
 
     def step(self, x: int, y: int) -> tuple[bool, str | None]:
         """
@@ -88,7 +88,7 @@ class TicTacToeGame(IGame):
         """
         if self._check_win(x, y):
             return 1
-        opponent = 'O' if self.current_player == 'X' else 'X'
+        opponent = 'o' if self.current_player == 'x' else 'x'
         if any(self._check_win(i, j) for i in range(3) for j in range(3) if self.board.board[i][j] == opponent):
             return -1
         if self.board.is_full():
@@ -120,7 +120,7 @@ class TicTacToeGame(IGame):
                 all(cell != player for cell in diag) for diag in diagonals
             )
 
-        open_count_max = count_open_for_player('O')  # Open lines/columns/diagonals for 'X'
-        open_count_min = count_open_for_player('X')  # Open lines/columns/diagonals for 'O'
+        open_count_max = count_open_for_player('o')  # Open lines/columns/diagonals for 'x'
+        open_count_min = count_open_for_player('x')  # Open lines/columns/diagonals for 'o'
 
         return open_count_max - open_count_min
