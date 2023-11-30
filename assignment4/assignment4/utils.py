@@ -2,15 +2,15 @@
 This file contains utility functions for the assignment.
 """
 
-import pandas
+import pandas as pd
 from math import log2
 
-def calculate_entropy(data: pandas.DataFrame, column: str) -> float:
+def calculate_entropy(data: pd.DataFrame, column: str) -> float:
     """Calculate the entropy of a given column in a dataframe.
     
     Parameters
     ----------
-    data : pandas.DataFrame
+    data : pd.DataFrame
         The dataframe containing the data.
     column : str
         The column name to calculate the entropy of.
@@ -29,12 +29,12 @@ def calculate_entropy(data: pandas.DataFrame, column: str) -> float:
 
 import numpy as np
 
-def calculate_information_gain(data: pandas.DataFrame, split_attribute: str, target_attribute: str) -> float:
+def calculate_information_gain(data: pd.DataFrame, split_attribute: str, target_attribute: str) -> float:
     """Calculate the Information Gain of a dataset after splitting on an attribute.
     
     Parameters
     ----------
-    data : pandas.DataFrame
+    data : pd.DataFrame
         The dataframe containing the data.
     split_attribute : str
         The name of the attribute to split on.
@@ -54,12 +54,12 @@ def calculate_information_gain(data: pandas.DataFrame, split_attribute: str, tar
     
     return total_entropy - weighted_entropy
 
-def calculate_gini_index(data: pandas.DataFrame, split_attribute: str, target_attribute: str) -> float:
+def calculate_gini_index(data: pd.DataFrame, split_attribute: str, target_attribute: str) -> float:
     """Calculate the Gini Index of a dataset after splitting on an attribute.
 
     Parameters
     ----------
-    data : pandas.DataFrame
+    data : pd.DataFrame
         The dataframe containing the data.
     split_attribute : str
         The name of the attribute to split on.
