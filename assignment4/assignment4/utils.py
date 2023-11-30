@@ -3,9 +3,10 @@ This file contains utility functions for the assignment.
 """
 
 import pandas as pd
+import numpy as np
 from math import log2
 
-def calculate_entropy(data: pd.DataFrame, column: str) -> float:
+def entropy(data: pd.DataFrame, column: str) -> float:
     """Calculate the entropy of a given column in a dataframe.
     
     Parameters
@@ -21,15 +22,13 @@ def calculate_entropy(data: pd.DataFrame, column: str) -> float:
         The entropy of the column.
     """
     value_counts = data[column].value_counts() # Counts the occurrence of each class
-    entropy = 0
-    for count in value_counts:
-        probability = count / len(data)
-        entropy -= probability * log2(probability)
+    probabilities = value_counts / sum(value_counts)
+    entropy = sum(probabilities * -np.log2(probabilities))
+    
     return entropy
 
-import numpy as np
 
-def calculate_information_gain(data: pd.DataFrame, split_attribute: str, target_attribute: str) -> float:
+def information_gain(data: pd.DataFrame, split_attribute: str, target_attribute: str) -> float:
     """Calculate the Information Gain of a dataset after splitting on an attribute.
     
     Parameters
@@ -46,15 +45,15 @@ def calculate_information_gain(data: pd.DataFrame, split_attribute: str, target_
     float
         The Information Gain of the dataset after the split.
     """
-    total_entropy = calculate_entropy(data, target_attribute)
+    total_entropy = entropy(data, target_attribute)
     vals, counts = np.unique(data[split_attribute], return_counts=True)
     
-    weighted_entropy = sum([(counts[i] / sum(counts)) * calculate_entropy(data.where(data[split_attribute] == vals[i]).dropna(), target_attribute) 
+    weighted_entropy = sum([(counts[i] / sum(counts)) * entropy(data.where(data[split_attribute] == vals[i]).dropna(), target_attribute) 
                             for i in range(len(vals))])
     
     return total_entropy - weighted_entropy
 
-def calculate_gini_index(data: pd.DataFrame, split_attribute: str, target_attribute: str) -> float:
+def gini_index(data: pd.DataFrame, split_attribute: str, target_attribute: str) -> float:
     """Calculate the Gini Index of a dataset after splitting on an attribute.
 
     Parameters

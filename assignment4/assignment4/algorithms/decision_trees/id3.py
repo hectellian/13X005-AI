@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from assignment4.utils import (calculate_entropy, calculate_information_gain, calculate_gini_index,)
+from assignment4.utils import (entropy, information_gain, gini_index,)
 from assignment4.data_structures.node import Node
 
 class ID3DecisionTree:
@@ -92,9 +92,9 @@ class ID3DecisionTree:
 
 		for feature in features:
 			if use_gini:
-				value = calculate_gini_index(data, feature, target_attribute)
+				value = gini_index(data, feature, target_attribute)
 			else:
-				value = calculate_information_gain(data, feature, target_attribute)
+				value = information_gain(data, feature, target_attribute)
 
 			if value > best_value:
 				best_value = value
