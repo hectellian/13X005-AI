@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "assignment5"
+version = "0.1.0"
+description = ""
+authors = ["Anthony Christoforou <anthony.christoforou@etu.unige.ch>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+matplotlib = "^3.8.2"
+networkx = "^3.2.1"
+numpy = "^1.26.2"
+pandas = "^2.1.3"
+
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.27.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
